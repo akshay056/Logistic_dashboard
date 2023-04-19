@@ -10,7 +10,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route>
-          <Route path="/" element={<Landingpage />} />
+        <Route path="/dashboard" element={<Landingpage />} />
+        <Route path="/Payment" element={<Landingpage />} />
+        <Route path="/ShipmentRequest" element={<Landingpage />} />
+        <Route path="/table" element={<Table />} />
+
         </Route>
       </Routes>
     </BrowserRouter>

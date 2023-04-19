@@ -8,9 +8,9 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 // import DocViewer,{DocViewerRenderers} from 'react-doc-viewer';
 
 
-const PDFViewer = ({open, onClose, rowInfo}) => {
+const PDFViewer = ({open, onClose, info}) => {
     
-     const [viewPDF, setViewPDF] = useState('');
+    //  const [viewPDF, setViewPDF] = useState('');
 
     // setViewPDF(samplePDF);
 
@@ -20,23 +20,23 @@ const PDFViewer = ({open, onClose, rowInfo}) => {
 // console.log('PDF Version:', bin.match(/^.PDF-([0-9.]+)/)[1]);
     //const docs=[{uri : viewPDF },]
 
-    useEffect(() => {
-        fetch('http://localhost:4000/orders')
-        .then((response) => response.json())
-        .then((data)=> {
-            console.log(data[0]);
-            setViewPDF(data[0].pdf)
-        })
-    })
+    // useEffect(() => {
+    //     fetch('http://localhost:4000/orders')
+    //     .then((response) => response.json())
+    //     .then((data)=> {
+    //         console.log(data[0]);
+    //         setViewPDF(data[0].pdf)
+    //     })
+    // })
     const newplugin = defaultLayoutPlugin();
-
+    const viewPDF="https://gateway.pinata.cloud/ipfs/QmaNxbQNrJdLzzd8CKRutBjMZ6GXRjvuPepLuNSsfdeJRJ";
     if(!open) return null
 
     return(
         <div onClick={onClose} className='overlay'>
-        <div onClick={(e) => e.stopPropagation()} className='modal-content ' >
+        <div onClick={(e) => e.stopPropagation()} className='modal-content-pdf ' >
             
-            <h5>PDF</h5>
+            <h5>{info[0]} Report</h5>
             <div className='pdf-container'>
                 <Worker workerUrl='http://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js'>
                     {viewPDF && <>
@@ -50,8 +50,8 @@ const PDFViewer = ({open, onClose, rowInfo}) => {
             <br/>
             
         
-            <button onClick={onClose} className='close-modal'>close</button>
-
+           
+            <button type="button"  onClick={onClose}  class="btn btn-danger mb-2 btn-sm " style={{position:'absolute', top:'10px', right:'10px'}}>close</button> 
             
         </div>
 

@@ -2,7 +2,6 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import logo from '../Assets/admin-logo.jfif';
 import { Button } from "bootstrap";
-import sonatalogo from '../Assets/sonata-logo.png';
 import { useLocation } from 'react-router-dom';
 
 function Sidebar() {
@@ -16,8 +15,6 @@ function Sidebar() {
         <>
             <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
                 <div className="d-flex flex-column align-items-center px-2 pt-4 text-white min-vh-100">
-                    {/* <span>    {sonatalogo && <img className='sonata-logo' src={sonatalogo} />}    </span><br /> */}
-
                     <span >
                         {logo && <img className='image-logo' src={logo} />}
                     </span>
@@ -40,14 +37,14 @@ function Sidebar() {
                             </li>
 
                             <li className="nav-item">
-                                <Link to="/TransactionHistory" className='remove-under-line'>
+                                <Link to="/ShipmentRequest" className='remove-under-line'>
                                 <i className="fs-4 bi-house"></i> <span className="ms-1 d-none d-sm-inline">
-                            Shipments
+                            Shipment Orders
                                 </span>
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/TransactionHistory" className='remove-under-line'>
+                                <Link to="/Payment" className='remove-under-line'>
                                 <i className="fs-4 bi-house"></i> <span className="ms-1 d-none d-sm-inline">
                             Payments
                                 </span>
