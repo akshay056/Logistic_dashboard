@@ -149,7 +149,7 @@ const PaymentList = () => {
     {field: 'orderId', headerName: 'Shipment Bill No', filter: true, flex: 1.5, filter: true,floatingFilter: true},
     {field: 'approvedby', headerName: 'To', filter: true, flex: 1.5, filter: true,floatingFilter: true},
      {field: 'inspectedby', headerName:'Material', flex:1.5},
-     {field:'value', headerName: 'Amount',  flex: 1.5, filter: true,floatingFilter: true},
+     {field:'status', headerName: 'status',  flex: 1.5, filter: true,floatingFilter: true},
     //  {
     //         field: 'doc', headerName: 'Documents', flex: 2,
     //         cellRendererFramework: (props) => {
@@ -159,7 +159,7 @@ const PaymentList = () => {
     //         }
     //       },
           {
-            headerName: 'Document', cellRendererFramework: () => {
+            headerName: 'Bill of Landing', cellRendererFramework: () => {
               return (
                 <>
                   <img src={eye} style={{ height: 30, width: 30 }} title="View"  onClick={onViewClicked} />&nbsp;&nbsp;
@@ -178,7 +178,7 @@ const PaymentList = () => {
         //resizable: true
    }));
  useEffect( () => {
-  const address = '0x3B9913F0BA1e1bea71f8dc1266046Cc87c1B5cD1'
+  const address = '0xF5B4E6be4b7C1311EB1fB4Dcd429FA58e1a1E521'
   const campaign = Campaign(address);
   console.log('use effect campaign',campaign);
   (async () => {

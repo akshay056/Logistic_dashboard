@@ -7,7 +7,7 @@ import web3 from "../ethereum/web3";
 // import Layout from "./Layout";
 import { Buffer } from "safe-buffer";
 import {create as ipfsClient} from 'ipfs-http-client';
-
+// import './Modal.css';
 const TestModal = ({open, onClose, rowInfo}) => {
 
     const projectId = '2NxJMYhDpERqRp621ZYvAdfMCli';
@@ -19,28 +19,20 @@ const TestModal = ({open, onClose, rowInfo}) => {
     const ipfs = ipfsClient({ host: 'ipfs.infura.io',port: 5001,protocol: 'https',headers: {authorization: auth,}, });
 
     const [state, setState] = useState({
-        value: "",
         orderId: "",
         inspectedby: "",
         approvedby: "",
         selectedFile:"",
-        recipient: "",
         loading: false,
-        errorMessage: "Try again"
+        errorMessage: ""
       })
       if(!open) return null
     
-    //   async function getInitialProps(props) {
-    //     console.log(props);
-    //     const { address } = props.query;
-    //     console.log(address);
-    //     return { address };
-    //   } 
     
       const onSubmit = async (event) => {
         event.preventDefault();
-        const campaign = Campaign('0x3B9913F0BA1e1bea71f8dc1266046Cc87c1B5cD1');
-        const { orderId, inspectedby, approvedby, value, selectedFile, recipient } = state;
+        const campaign = Campaign('0xF5B4E6be4b7C1311EB1fB4Dcd429FA58e1a1E521');
+        const { orderId, inspectedby, approvedby,  selectedFile } = state;
     
         setState({ ...state, loading: true, errorMessage: "" });
 
@@ -55,7 +47,7 @@ const TestModal = ({open, onClose, rowInfo}) => {
           console.log('ipfs hash', ipfsHash);
 
           await campaign.methods
-            .createRequest(orderId, inspectedby, approvedby, web3.utils.toWei(value, "ether"),ipfsHash,recipient)
+            .createRequest(orderId, inspectedby, approvedby,ipfsHash)
             .send({ from: accounts[0] });
             
             console.log("dsf");
@@ -106,15 +98,15 @@ const TestModal = ({open, onClose, rowInfo}) => {
                     }
                   />
                 </Form.Field>
-                <Form.Field>
+                {/* <Form.Field>
                   <label>Value in Ether</label>
                   <Input
                   value={state.value}
                   onChange={(event) => setState({ ...state, value: event.target.value })}
                     />
-                </Form.Field>
+                </Form.Field> */}
                 <Form.Field>
-                    <label>Upload</label>
+                    <label>Upload Bill of Landing</label>
                     <Input type="file"
                     
                     onChange={(event) =>
@@ -123,7 +115,7 @@ const TestModal = ({open, onClose, rowInfo}) => {
                     />
                 </Form.Field>
 
-                <Form.Field>
+                {/* <Form.Field>
                   <label>Recipient</label>
                   <Input
                     value={state.recipient}
@@ -131,7 +123,8 @@ const TestModal = ({open, onClose, rowInfo}) => {
                       setState({ ...state, recipient: event.target.value })
                     }
                   />
-                </Form.Field>
+                </Form.Field> */}
+
                 <Message error  content={state.errorMessage} />
 
                 <button loading={state.loading} type="submit" class="btn btn-primary mb-2 " >create</button> 

@@ -1,6 +1,6 @@
 import './Card.css';
 
-function Card() {
+function Card(props) {
   return (
     <>
       <div style={{ display: "flex" }} className="usercard">
@@ -11,8 +11,8 @@ function Card() {
             <div><h4 className="card-text">Total Shipments :</h4></div><br />
 
             <h6 className="card-title">
-              {/* {accountAddress} */}
-              10</h6>
+              {props.ordcount} 
+              </h6>
 
           </div>
         </div>

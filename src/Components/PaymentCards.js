@@ -1,5 +1,5 @@
 import './PaymentCards.css'
-function PaymentCards(){
+function PaymentCards(props){
 return (
     <>
       <div style={{ display: "flex" }} className="usercard">
@@ -17,7 +17,7 @@ return (
             <div><h4 className="card-text" style={{textAlign:'center'}}>Total Shipment:</h4></div><br />
 
             {/* <h6 className="card-title">{accountAddress}</h6> */}
-            <h2>10</h2>
+            <h2>{props.ordcount}</h2>
 
           </div>
         </div>

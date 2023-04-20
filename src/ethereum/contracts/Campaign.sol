@@ -51,14 +51,14 @@ contract Campaign {
         approversCount++;
     }
 
-    function createRequest(string memory orderId, string memory inspectedby,string memory approvedby, uint value,string memory selectedFile ,address recipient) public restricted {
+    function createRequest(string memory orderId, string memory inspectedby,string memory approvedby,string memory selectedFile ) public restricted {
         Request storage newRequest = requests.push(); 
         newRequest.orderId = orderId;
         newRequest.inspectedby = inspectedby;
         newRequest.approvedby = approvedby;  
-        newRequest.value= value;
+        // newRequest.value= value;
         newRequest.selectedFile= selectedFile;
-        newRequest.recipient= recipient;
+        // newRequest.recipient= recipient;
         newRequest.complete= false;
         newRequest.approvalCount= 0;
     }
