@@ -13,7 +13,7 @@ function Sidebar() {
 
     return (
         <>
-            <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark ">
                 <div className="d-flex flex-column align-items-center px-2 pt-4 text-white min-vh-100">
                     <span >
                         {logo && <img className='image-logo' src={logo} />}

@@ -1,9 +1,8 @@
-import './PaymentCards.css'
 function PaymentCards(props){
 return (
     <>
       <div style={{ display: "flex" }} className="usercard">
-        <div className="card text-dark bg-i mb-3" style={{ maxWidth: "25rem", }}>
+        <div className="card text-dark bg-i mb-3" style={{ maxWidth: "22rem", }}>
 
           <div className="card-heade">
 
@@ -14,7 +13,9 @@ return (
           </div>
           <div className="card-footer bg-transparent border-success">
 
-            <div><h4 className="card-text" style={{textAlign:'center'}}>Total Shipment:</h4></div><br />
+            <div><h4 className="card-text" 
+            // style={{textAlign:'center'}}
+            >Total Shipments :</h4></div><br />
 
             {/* <h6 className="card-title">{accountAddress}</h6> */}
             <h2>{props.ordcount}</h2>
@@ -31,7 +32,7 @@ return (
           <div class="card-footer bg-transparent border-success">
             <div><h4 className="card-text">Pending Payment:</h4></div><br />
             {/* <h6 className="card-title">{accountBalance} ETH</h6> */}
-            <h2>3</h2>
+            <h2>{props.inprogcount}</h2>
           </div>
         </div>
       </div>

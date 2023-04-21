@@ -10,9 +10,9 @@ function Card(props) {
 
             <div><h4 className="card-text">Total Shipments :</h4></div><br />
 
-            <h6 className="card-title">
+            <h2 className="card-title">
               {props.ordcount} 
-              </h6>
+              </h2>
 
           </div>
         </div>
@@ -25,9 +25,9 @@ function Card(props) {
           </div>
           <div class="card-footer bg-transparent border-success">
             <div><h4 className="card-text">In Progress:</h4></div><br />
-            <h6 className="card-title">
-              {/* {accountBalance} ETH */}
-              3</h6>
+            <h2 className="card-title">
+              {props.inprogcount}
+              </h2>
           </div>
         </div>
         <div className="card carduser2 card-user text-dar bg-info-2 mb-3 " style={{ maxWidth: "16rem", marginLeft: "20px" }}>
@@ -39,9 +39,8 @@ function Card(props) {
           </div>
           <div class="card-footer bg-transparent border-success nftsspan">
             <div><h4 className="card-text">Delievered :</h4></div><br />
-            <h6 className="card-title">
-              {/* {accountBalance} ETH*/}
-              7</h6> 
+            <h2 className="card-title">
+              {props.delivcount}</h2> 
           </div>
         </div>
       </div>

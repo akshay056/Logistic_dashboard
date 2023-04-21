@@ -6,7 +6,7 @@ function Landingpage() {
     return (
         <>
             <div class="container1-fluid">
-                <div class="row flex-nowrap">
+                <div class="row flex-nowrap " >
                     <Sidebar />
                     <div class="col py-3">
                         <Content />

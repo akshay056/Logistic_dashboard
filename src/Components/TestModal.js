@@ -1,14 +1,13 @@
 import { useState } from "react";
-import React, { Component } from "react";
-import { Form, Button, Message, Input } from "semantic-ui-react";
-import factory from "../ethereum/factory";
+import React from "react";
+import { Form , Message, Input } from "semantic-ui-react";
 import Campaign from "../ethereum/campaign";
 import web3 from "../ethereum/web3";
 // import Layout from "./Layout";
 import { Buffer } from "safe-buffer";
 import {create as ipfsClient} from 'ipfs-http-client';
 // import './Modal.css';
-const TestModal = ({open, onClose, rowInfo}) => {
+const TestModal = ({open, onClose, rowInfo ,ordID}) => {
 
     const projectId = '2NxJMYhDpERqRp621ZYvAdfMCli';
     const projectSecret = 'eeb623c13ca6fde2936a70a6f2f2bd51';
@@ -19,20 +18,16 @@ const TestModal = ({open, onClose, rowInfo}) => {
     const ipfs = ipfsClient({ host: 'ipfs.infura.io',port: 5001,protocol: 'https',headers: {authorization: auth,}, });
 
     const [state, setState] = useState({
-        orderId: "",
-        inspectedby: "",
-        approvedby: "",
-        selectedFile:"",
+        billOfLanding:'',
         loading: false,
         errorMessage: ""
       })
       if(!open) return null
     
-    
       const onSubmit = async (event) => {
         event.preventDefault();
-        const campaign = Campaign('0xF5B4E6be4b7C1311EB1fB4Dcd429FA58e1a1E521');
-        const { orderId, inspectedby, approvedby,  selectedFile } = state;
+        const campaign = Campaign('0x8A59B3f39129379D39eC22cA815cA726BB395338');
+        const { billOfLanding } = state;
     
         setState({ ...state, loading: true, errorMessage: "" });
 
@@ -43,11 +38,11 @@ const TestModal = ({open, onClose, rowInfo}) => {
             const result = await ipfs.add(pdfFile);
             return result.path;
           };
-          const ipfsHash = await addPdfToIpfs(selectedFile);
+          const ipfsHash = await addPdfToIpfs(billOfLanding);
           console.log('ipfs hash', ipfsHash);
 
           await campaign.methods
-            .createRequest(orderId, inspectedby, approvedby,ipfsHash)
+          .createLogisticsBill(ipfsHash,rowInfo)
             .send({ from: accounts[0] });
             
             console.log("dsf");
@@ -63,33 +58,31 @@ const TestModal = ({open, onClose, rowInfo}) => {
         <>
                 <div  className='overlay'>
                 <div onClick={(e) => e.stopPropagation()} className='modal-content ' >
-              <h3>Create a Bill</h3>
-    
+              <h3>Create a Bill</h3><br />
+              
+                <p > <b>Order Id:</b> {ordID}</p>
               <Form onSubmit={onSubmit} error={!!state.errorMessage}>
-    
-                <Form.Field>
-    
+                {/* <Form.Field>
                   <label>OrderID</label>
     
                   <Input
     
                     value={state.orderId}
     
-                    onChange={(event) =>
-                      setState({ ...state, orderId: event.target.value })
-                    }
+                    onChange={(event) 
+                      => setState({ ...state, orderId: event.target.value })}
                   />
                 </Form.Field>
                 <Form.Field>
                   <label>Manufacturer Name: </label>
                   <Input
                     value={state.inspectedby}
-                    onChange={(event) =>
-                      setState({ ...state, inspectedby: event.target.value })
-                    }
+                    onChange={(event) 
+                      => setState({ ...state, inspectedby: event.target.value })}
+                    
                   />
-                </Form.Field>
-                <Form.Field>
+                </Form.Field> */}
+                {/* <Form.Field>
                   <label>Ordered by </label>
                   <Input
                     value={state.approvedby}
@@ -97,7 +90,7 @@ const TestModal = ({open, onClose, rowInfo}) => {
                       setState({ ...state, approvedby: event.target.value })
                     }
                   />
-                </Form.Field>
+                </Form.Field> */}
                 {/* <Form.Field>
                   <label>Value in Ether</label>
                   <Input
@@ -110,7 +103,7 @@ const TestModal = ({open, onClose, rowInfo}) => {
                     <Input type="file"
                     
                     onChange={(event) =>
-                        setState({...state, selectedFile: event.target.files[0] })
+                        setState({...state, billOfLanding: event.target.files[0] })
                     }
                     />
                 </Form.Field>

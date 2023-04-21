@@ -8,14 +8,10 @@ function Content() {
     console.log("location", location);
     return (
         <>
-            {/* {location && location.pathname === "/" && <Dashboard />} */}
+            {location && location.pathname === "/" && <Dashboard />}
             {location && location.pathname === "/dashboard" && <Dashboard />}
             {location && location.pathname === "/Payment" && <Payment />}
             {location && location.pathname === "/ShipmentRequest" && <ShipmentRequest />}
-
-            
-            {/* {location && location.pathname === "/user" && <Employee />}
-            {location && location.pathname === "/TransactionHistory" && <TransactionHistory />} */}
         </>
     )
 }
